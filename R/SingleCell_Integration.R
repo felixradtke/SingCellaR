@@ -572,6 +572,24 @@ runSupervised_Harmony <- function(object,n.dims.use=30,fGSEA.minSize=10,fGSEA.ma
       y.genes.db<-genes.db[-rm.index]
       
       print(paste("Processing fGSEA for: ",my.title,sep=""))
+	# Start Felix' insertion
+	pp <- preparePathwaysAndStats(y.genes.db, prerank.genes, gsea.minSize, 
+																gsea.maxSize, gseaParam = 1, scoreType = "pos")
+
+	ind_gsea <- data.frame(sizes = pp$sizes, isIdentical = ifelse(pp$sizes == length(prerank.genes), TRUE, FALSE)) %>%
+		mutate(n = row_number()) %>%
+		filter(isIdentical == TRUE) %>%
+		rownames_to_column("cluster") %>%
+		dplyr::select(cluster) %>% unlist()
+	if(length(ind_gsea) > 0){
+		for(i in 1:length(ind_gsea)){
+			current.cluster <- ind_gsea[i]
+			y.genes.db[[current.cluster]] <- y.genes.db[[current.cluster]][y.genes.db[[current.cluster]] != names(prerank.genes)[length(prerank.genes)]]
+			names(prerank.genes)[length(prerank.genes)]
+
+		}
+	}
+	# End Felix' insertion
       fgseaRes <- fgseaMultilevel(pathways = y.genes.db, 
                         stats = prerank.genes,
                         minSize=gsea.minSize,
