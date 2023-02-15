@@ -572,6 +572,8 @@ runSupervised_Harmony <- function(object,n.dims.use=30,fGSEA.minSize=10,fGSEA.ma
       y.genes.db<-genes.db[-rm.index]
       
       print(paste("Processing fGSEA for: ",my.title,sep=""))
+    	print(paste("Start Felix insertion"))
+
 	# Start Felix' insertion
 	pp <- preparePathwaysAndStats(y.genes.db, prerank.genes, gsea.minSize, 
 																gsea.maxSize, gseaParam = 1, scoreType = "pos")
