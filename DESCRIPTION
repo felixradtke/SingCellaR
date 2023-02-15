@@ -1,7 +1,7 @@
 Package: SingCellaR
 Type: Package
 Title: SingCellaR: an integrative analysis tool for single-cell RNA sequencing (scRNA-seq) data
-Version: 1.2.2
+Version: 1.2.3
 Author: Supat Thongjuea, MRC Weatherall Institute of Molecular Medicine University of Oxford
 Maintainer: Supat Thongjuea <supat.thongjuea@imm.ox.ac.uk> or <supat.thongjuea@gmail.com>
 Description: SingCellaR provides standard functionalities for analyzing scRNA-seq datasets.
